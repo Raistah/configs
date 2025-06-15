@@ -1,4 +1,4 @@
-{ config, pkgs, ... }
+{ config, pkgs, ... }:
 
 {
   home.username = "raistah";
@@ -7,7 +7,7 @@
   home.packages = with pkgs; [
    neofetch
    btop
-  ]
+  ];
 
   home.stateVersion = "24.11";
 }
