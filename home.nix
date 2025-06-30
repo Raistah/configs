@@ -1,6 +1,11 @@
 { config, pkgs, ... }:
 
 {
+  imports = [
+    ./home/hyprpanel.nix
+  ];
+
+
   home.username = "raistah";
   home.homeDirectory = "/home/raistah";
 
