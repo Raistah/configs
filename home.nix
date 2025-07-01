@@ -21,6 +21,10 @@
       source = ./home/dotfiles/hyprland.conf;
       recursive = true;
     };
+    ".config/rio/config.toml" = {
+      source = ./home/dotfiles/config.toml;
+      recursive = true;
+    };
   };
 
   home.stateVersion = "25.05";
