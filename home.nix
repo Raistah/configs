@@ -19,6 +19,7 @@
   home.file = {
     ".config/hypr/hyprland.conf" = {
       source = ./home/dotfiles/hyprland.conf;
+      recursive = true;
     };
   };
 
