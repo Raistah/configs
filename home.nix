@@ -4,6 +4,7 @@
   imports = [
     ./home/hyprpanel.nix
     ./home/tofi.nix
+    ./home/fish.nix
   ];
 
 
