@@ -16,5 +16,11 @@
    btop
   ];
 
+  home.file = {
+    ".config/hypr/hyprland.conf" = {
+      source = ./home/dotfiles/hyprland.conf;
+    };
+  };
+
   home.stateVersion = "25.05";
 }
