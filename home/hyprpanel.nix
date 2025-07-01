@@ -26,7 +26,7 @@
 
     # Import a theme from './themes/*.json'.
     # Default: ""
-    # theme = "gruvbox_split";
+    theme = "gruvbox_split";
 
     # Override the final config with an arbitrary set.
     # Useful for overriding colors in your selected theme.
@@ -38,15 +38,15 @@
     # Configure bar layouts for monitors.
     # See 'https://hyprpanel.com/configuration/panel.html'.
     # Default: null
-    # ayout = {
-    #  "bar.layouts" = {
-    #    "0" = {
-    #      left = [ "dashboard" "workspaces" ];
-    #      middle = [ "media" ];
-    #      right = [ "volume" "systray" "notifications" ];
-    #    };
-    #  };
-    # ;
+    layout = {
+      "bar.layouts" = {
+        "0" = {
+          left = [ "dashboard" "workspaces" ];
+          middle = [ "media" ];
+          right = [ "volume" "systray" "notifications" ];
+        };
+      };
+    };
 
     # Configure and theme almost all options from the GUI.
     # Options that require '{}' or '[]' are not yet implemented,
