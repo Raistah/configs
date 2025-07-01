@@ -3,6 +3,7 @@
 {
   imports = [
     ./home/hyprpanel.nix
+    ./home/tofi.nix
   ];
 
 
