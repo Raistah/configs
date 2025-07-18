@@ -1,10 +1,19 @@
 { inputs, ... }:
 {
   programs.hyprpanel = {
+    enable = true;
 
     settings = {
       bar.launcher.autoDetectIcon = true;
       bar.workspaces.show_icons = true;
+
+      bar.layouts = {
+        "0" = {
+          left = [ "dashboard" "workspaces" "windowtitle" ];
+          middle = [ "media" "notifications" ];
+          right = [ "volume" "network" "bluetooth" "systray" "clock" ];
+        };
+      };
 
       menus.clock = {
         time = {
@@ -22,16 +31,6 @@
       theme.font = {
         name = "CaskaydiaCove NF";
         size = "16px";
-      };
-
-      layout = {
-        "bar.layouts" = {
-          "0" = {
-            left = [ "dashboard" "workspaces" ];
-            middle = [ "media" ];
-            right = [ "volume" "systray" "notifications" ];
-          };
-        };
       };
     };
   };
