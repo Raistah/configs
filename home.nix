@@ -3,6 +3,7 @@
 {
   imports = [
     ./home/hypridle.nix
+    ./home/hyprlock.nix
     ./home/hyprpanel.nix
     ./home/tofi.nix
     ./home/fish.nix
