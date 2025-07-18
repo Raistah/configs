@@ -2,6 +2,7 @@
 
 {
   imports = [
+    ./home/hypridle.nix
     ./home/hyprpanel.nix
     ./home/tofi.nix
     ./home/fish.nix
