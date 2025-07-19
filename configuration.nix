@@ -76,6 +76,7 @@
     wl-clipboard
     wget
     yazi
+    hyprpicker
   ];
 
   environment.sessionVariables = {
