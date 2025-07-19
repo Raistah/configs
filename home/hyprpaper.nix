@@ -8,10 +8,10 @@
       splash = false;
       splash_offset = 2.0;
       
-      preload = [ "${config.home.homeDirectory}/Pictures/aishot-2498.png" ];
+      preload = [ "${config.home.homeDirectory}/Pictures/aishot-2498.jpg" ];
 
       wallpaper = [
-        "DP-6,${config.home.homeDirectory}/Pictures/aishot-2498.png"
+        "DP-6, ${config.home.homeDirectory}/Pictures/aishot-2498.jpg"
       ];
     };
   };
