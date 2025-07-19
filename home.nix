@@ -30,5 +30,5 @@
     };
   };
 
-  home.stateVersion = "25.05"nix home manager how to get home Directory inside module
+  home.stateVersion = "25.05";
 }
