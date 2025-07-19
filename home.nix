@@ -7,6 +7,7 @@
     ./home/hyprpanel.nix
     ./home/hyprpaper.nix
     ./home/cliphist.nix
+    ./home/vim.nix
     ./home/tofi.nix
     ./home/fish.nix
   ];

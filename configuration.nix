@@ -73,7 +73,6 @@
     firefox
     rio
     git
-    vim
     wl-clipboard
     wget
     yazi
