@@ -5,6 +5,7 @@
     ./home/hypridle.nix
     ./home/hyprlock.nix
     ./home/hyprpanel.nix
+    ./home/hyprpaper.nix
     ./home/tofi.nix
     ./home/fish.nix
   ];
@@ -29,5 +30,5 @@
     };
   };
 
-  home.stateVersion = "25.05";
+  home.stateVersion = "25.05"nix home manager how to get home Directory inside module
 }
