@@ -8,6 +8,7 @@
     ./home/hyprpaper.nix
     ./home/cliphist.nix
     ./home/vim.nix
+    ./home/vesktop.nix
     ./home/tofi.nix
     ./home/fish.nix
   ];
