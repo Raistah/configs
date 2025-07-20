@@ -81,6 +81,7 @@
     wget
     yazi
     hyprpicker
+    hyprshot
   ];
 
   environment.sessionVariables = {
