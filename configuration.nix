@@ -85,9 +85,13 @@
   };
 
   # Hyprland
-  programs.hyprland = {
-   enable = true;
-   xwayland.enable = true;
+  programs = { 
+    hyprland = {
+      enable = true;
+      xwayland.enable = true;
+      withUWSM = true;
+    };
+    uwsm.enable = true;
   };
 
  

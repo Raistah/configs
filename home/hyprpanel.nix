@@ -26,12 +26,6 @@
       menus.dashboard.directories.enabled = false;
       menus.dashboard.stats.enable_gpu = true;
 
-      theme.bar.transparent = true;
-
-      theme.font = {
-        name = "CaskaydiaCove NF";
-        size = "16px";
-      };
     };
   };
 }

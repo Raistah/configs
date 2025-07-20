@@ -4,7 +4,8 @@
   imports = [
     ./home/hypridle.nix
     ./home/hyprlock.nix
-    ./home/hyprpanel.nix
+    #./home/hyprpanel.nix
+    ./home/waybar.nix
     ./home/hyprpaper.nix
     ./home/cliphist.nix
     ./home/vim.nix
