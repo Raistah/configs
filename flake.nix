@@ -11,6 +11,7 @@
    url = "github:jas-singhfsu/hyprpanel";
    inputs.nixpkgs.follows = "nixpkgs";
   };
+  walker.url = "github:abenz1267/walker"; 
  };
 
  outputs = { self, nixpkgs, home-manager, ... }@inputs: 

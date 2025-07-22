@@ -6,6 +6,7 @@
     ./home/hyprlock.nix
     #./home/hyprpanel.nix
     ./home/waybar.nix
+    ./home/walker.nix
     ./home/hyprpaper.nix
     ./home/cliphist.nix
     ./home/dunst.nix
