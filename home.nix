@@ -31,7 +31,7 @@
       recursive = true;
     };
     ".config/rio/config.toml" = {
-      source = ./home/dotfiles/config.toml;
+      source = ./home/dotfiles/rio.toml;
       recursive = true;
     };
     ".icons/Nordzy-hyprcursors" = {
