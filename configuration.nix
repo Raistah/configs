@@ -48,17 +48,26 @@
     LC_TIME = "uk_UA.UTF-8";
   };
 
-  # Configure keymap in X11
-  services.xserver = {
-    xkb = {
-      layout = "us, ua";
-      variant = "";
+  services = {
+    greetd = {
+      enable = true;
+      settings = {
+        default_session = {
+          command = "${pkgs.greetd.tuigreet}/bin/tuigreet --time --sessions /etc/nixos/desktop --remember --remember-user-session";
+          user = "raistah";
+        };
+      };
+    };
+
+    # Configure keymap in X11
+    xserver = {
+      xkb = {
+        layout = "us, ua";
+        variant = "";
+      };
+      videoDrivers = ["nvidia"];
     };
   };
-
-  services.xserver.videoDrivers = ["nvidia"];
-
-  services.displayManager.ly.enable = true;
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.raistah = {
     isNormalUser = true;
@@ -79,9 +88,12 @@
     git
     wl-clipboard
     wget
+    unzip
     yazi
+    libnotify
     hyprpicker
     hyprshot
+    hyprcursor
   ];
 
   environment.sessionVariables = {
@@ -94,9 +106,18 @@
     hyprland = {
       enable = true;
       xwayland.enable = true;
-      #withUWSM = true;
+      withUWSM = true;
     };
-    #uwsm.enable = true;
+    uwsm = {
+      enable = true;
+      waylandCompositors = {
+        hyprland = {
+          prettyName = "Hyprland";
+          comment = "Hyprland compositor managed by UWSM";
+          binPath = "/run/current-system/sw/bin/Hyprland";
+        };
+      };
+    };
   };
 
  
@@ -111,6 +132,7 @@
     open = true;
     # Driver version
     package = config.boot.kernelPackages.nvidiaPackages.stable;
+    powerManagement.enable = true;
    };
   };
 

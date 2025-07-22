@@ -1,0 +1,6 @@
+[Desktop Entry]
+Name=Shell Fish
+Comment=Start a simple shell session
+Exec=fish --login
+Type=Application
+NoDisplay=false

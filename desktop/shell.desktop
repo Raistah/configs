@@ -1,0 +1,6 @@
+[Desktop Entry]
+Name=Shell
+Comment=Start a simple shell session
+Exec=/bin/sh --login
+Type=Application
+NoDisplay=false
