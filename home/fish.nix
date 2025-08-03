@@ -15,5 +15,9 @@
 	rm -f -- "$tmp"
       end
     '';
+
+    shellAliases = {
+      zed = "zeditor";
+    };
   };
 }

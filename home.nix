@@ -2,19 +2,19 @@
 
 {
   imports = [
-    ./home/hypridle.nix
-    ./home/hyprlock.nix
-    #./home/hyprpanel.nix
-    ./home/waybar.nix
-    ./home/walker.nix
-    ./home/hyprpaper.nix
     ./home/cliphist.nix
     ./home/dunst.nix
-    ./home/vim.nix
-    ./home/vesktop.nix
-    ./home/tofi.nix
     ./home/fish.nix
+    ./home/hypridle.nix
+    ./home/hyprlock.nix
+    ./home/hyprpaper.nix
     ./home/starship.nix
+    ./home/tofi.nix
+    ./home/vesktop.nix
+    ./home/vim.nix
+    ./home/walker.nix
+    ./home/waybar.nix
+    ./home/zed.nix
   ];
 
 

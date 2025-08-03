@@ -1,0 +1,6 @@
+{ inputs, ... }:
+{
+  programs.zed-editor = {
+    enable = true;
+  };
+}
