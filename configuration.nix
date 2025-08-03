@@ -53,7 +53,7 @@
       enable = true;
       settings = {
         default_session = {
-          command = "${pkgs.greetd.tuigreet}/bin/tuigreet --time --sessions /etc/nixos/desktop --remember --remember-user-session";
+          command = "${pkgs.greetd.tuigreet}/bin/tuigreet --remember --remember-user-session --time --sessions /etc/nixos/desktop";
           user = "raistah";
         };
       };
@@ -83,6 +83,7 @@
   # $ nix search wget
   environment.systemPackages = with pkgs; [
     kdePackages.dolphin
+    ddcutil
     firefox
     rio
     git
@@ -91,9 +92,11 @@
     unzip
     yazi
     libnotify
+    killall
     hyprpicker
     hyprshot
     hyprcursor
+    pavucontrol
   ];
 
   environment.sessionVariables = {
