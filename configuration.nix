@@ -53,7 +53,7 @@
       enable = true;
       settings = {
         default_session = {
-          command = "${pkgs.greetd.tuigreet}/bin/tuigreet --remember --remember-session --remember-user-session --time --sessions /etc/nixos/desktop";
+          command = "${pkgs.greetd.tuigreet}/bin/tuigreet --remember --remember-user-session --time --sessions /etc/nixos/desktop";
           user = "raistah";
         };
       };
@@ -131,6 +131,7 @@
         };
       };
     };
+    ssh.startAgent = true;
   };
 
  
