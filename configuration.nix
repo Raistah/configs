@@ -53,7 +53,7 @@
       enable = true;
       settings = {
         default_session = {
-          command = "${pkgs.greetd.tuigreet}/bin/tuigreet --remember --remember-user-session --time --sessions /etc/nixos/desktop";
+          command = "${pkgs.greetd.tuigreet}/bin/tuigreet --remember --remember-session --remember-user-session --time --sessions /etc/nixos/desktop";
           user = "raistah";
         };
       };
@@ -82,21 +82,31 @@
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
-    kdePackages.dolphin
     ddcutil
+    fd
+    ffmpeg
     firefox
-    rio
+    fzf
     git
-    wl-clipboard
-    wget
-    unzip
-    yazi
-    libnotify
-    killall
+    gitui
+    harlequin
+    hyprcursor
     hyprpicker
     hyprshot
-    hyprcursor
+    imagemagick
+    killall
+    libnotify
+    p7zip
     pavucontrol
+    resvg
+    rio
+    ripgrep
+    unzip
+    wget
+    wl-clipboard
+    yazi
+    zoxide
+    kdePackages.dolphin
   ];
 
   environment.sessionVariables = {

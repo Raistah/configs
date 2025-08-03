@@ -14,6 +14,7 @@
     ./home/vesktop.nix
     ./home/tofi.nix
     ./home/fish.nix
+    ./home/starship.nix
   ];
 
 

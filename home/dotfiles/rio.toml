@@ -11,6 +11,38 @@ hide-if-single = true
 use-current-path = true
 color-automation = []
 
+[fonts]
+size = 18
+features = []
+use-drawable-chars = true
+symbol-map = []
+disable-warnings-not-found = false
+additional-dirs = []
+
+[fonts.regular]
+family = "CaskaydiaCove NF"
+style = "Normal"
+width = "Normal"
+weight = 400
+
+[fonts.bold]
+family = "CaskaydiaCove NF"
+style = "Normal"
+width = "Normal"
+weight = 800
+
+[fonts.italic]
+family = "CaskaydiaCove NF"
+style = "Italic"
+width = "Normal"
+weight = 400
+
+[fonts.bold-italic]
+family = "CaskaydiaCove NF"
+style = "Italic"
+width = "Normal"
+weight = 800
+
 [colors]
 background = '#20111b'
 foreground = '#968c83'
