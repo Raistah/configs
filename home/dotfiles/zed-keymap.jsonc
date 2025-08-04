@@ -1,0 +1,49 @@
+[
+  {
+    "context": "Workspace",
+    "bindings": {
+      // "shift shift": "file_finder::Toggle"
+    }
+  },
+  {
+    "context": "Editor",
+    "bindings": {
+      // "j k": ["workspace::SendKeystrokes", "escape"]
+    }
+  },
+  {
+    "context": "Editor && showing_completions",
+    "bindings": {
+      "enter": "editor::Newline"
+    }
+  },
+  {
+    "context": "vim_mode == normal",
+    "bindings": {
+      "H": "workspace::ActivatePaneLeft",
+      "J": "workspace::ActivatePaneDown",
+      "K": "workspace::ActivatePaneUp",
+      "L": "workspace::ActivatePaneRight",
+      "space Y": ["workspace::SendKeystrokes", "\" a Y"],
+      "space p": ["workspace::SendKeystrokes", "\" a p"],
+      "space P": ["workspace::SendKeystrokes", "\" a P"]
+    }
+  },
+  {
+    "context": "vim_mode == visual",
+    "bindings": {
+      // yank to a register
+      "space y": ["workspace::SendKeystrokes", "\" a y"],
+      "space p": ["workspace::SendKeystrokes", "\" a p"],
+      "space x": ["workspace::SendKeystrokes", "\" a x"],
+
+      // wrap selected
+      "space S (": ["workspace::SendKeystrokes", "s ( escape p a"],
+      "space S [": ["workspace::SendKeystrokes", "s [ escape p a"],
+      "space S {": ["workspace::SendKeystrokes", "s { escape p a"],
+      "space S '": ["workspace::SendKeystrokes", "s ' escape p a"],
+      "space S \"": ["workspace::SendKeystrokes", "s \" escape p a"],
+      "space S `": ["workspace::SendKeystrokes", "s ` escape p a"]
+    }
+  }
+]
