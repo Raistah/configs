@@ -8,10 +8,10 @@
       splash = false;
       splash_offset = 2.0;
       
-      preload = [ "${config.home.homeDirectory}/Pictures/aishot-2498.jpg" ];
+      preload = [ "/etc/nixos/wallpapers/aishot-2498.jpg" ];
 
       wallpaper = [
-        "DP-6, ${config.home.homeDirectory}/Pictures/aishot-2498.jpg"
+        "DP-6, /etc/nixos/wallpapers/aishot-2498.jpg"
       ];
     };
   };

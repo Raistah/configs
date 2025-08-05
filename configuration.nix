@@ -89,6 +89,7 @@
     fzf
     git
     gitui
+    git-filter-repo
     harlequin
     hyprcursor
     hyprpicker
