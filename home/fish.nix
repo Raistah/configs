@@ -18,6 +18,7 @@
 
     shellAliases = {
       zed = "zeditor";
+      "nix-dev" = "nix develop --command fish";
     };
   };
 }

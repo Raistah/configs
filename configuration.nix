@@ -99,6 +99,7 @@
     libnotify
     p7zip
     pavucontrol
+    qbittorrent
     resvg
     rio
     ripgrep
