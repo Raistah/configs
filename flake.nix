@@ -7,15 +7,11 @@
    url = "github:nix-community/home-manager/release-25.05";
    inputs.nixpkgs.follows = "nixpkgs";
   };
-  hyprpanel = {
-   url = "github:jas-singhfsu/hyprpanel";
-   inputs.nixpkgs.follows = "nixpkgs";
-  };
-  walker.url = "github:abenz1267/walker"; 
+  walker.url = "github:abenz1267/walker";
  };
 
- outputs = { self, nixpkgs, home-manager, ... }@inputs: 
- let 
+ outputs = { self, nixpkgs, home-manager, ... }@inputs:
+ let
   system = "x86_64-linux";
  in {
   nixosConfigurations.nixos = nixpkgs.lib.nixosSystem {

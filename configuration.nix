@@ -9,7 +9,7 @@
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
     ];
-  
+
   # Enable Flakes
   nix.settings.experimental-features = ["nix-command" "flakes"];
   # Bootloader.
@@ -88,32 +88,32 @@
     firefox
     fzf
     git
-    gitui
     git-filter-repo
+    gitui
     harlequin
     hyprcursor
     hyprpicker
     hyprshot
     imagemagick
-    ngrok
-    nixd
-    nil
+    kdePackages.dolphin
     killall
     libnotify
+    ngrok
+    nil
+    nixd
     p7zip
     pavucontrol
     qbittorrent
     resvg
     rio
     ripgrep
+    sqlite
     unzip
     vlc
     wget
     wl-clipboard
     yazi
-    sqlite
     zoxide
-    kdePackages.dolphin
   ];
 
   environment.sessionVariables = {
@@ -122,7 +122,7 @@
   };
 
   # Hyprland
-  programs = { 
+  programs = {
     hyprland = {
       enable = true;
       xwayland.enable = true;
@@ -141,7 +141,7 @@
     ssh.startAgent = true;
   };
 
- 
+
   hardware = {
    graphics.enable = true;
 
