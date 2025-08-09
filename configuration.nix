@@ -95,6 +95,9 @@
     hyprpicker
     hyprshot
     imagemagick
+    ngrok
+    nixd
+    nil
     killall
     libnotify
     p7zip
@@ -104,9 +107,11 @@
     rio
     ripgrep
     unzip
+    vlc
     wget
     wl-clipboard
     yazi
+    sqlite
     zoxide
     kdePackages.dolphin
   ];
