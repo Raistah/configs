@@ -102,6 +102,7 @@
     nil
     nixd
     p7zip
+    package-version-server
     pavucontrol
     qbittorrent
     resvg
