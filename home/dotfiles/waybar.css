@@ -97,6 +97,7 @@ button:hover {
 #tray,
 #mpris,
 #memory,
+#language,
 #load {
     padding: 0 10px;
     background-color: #282828;
