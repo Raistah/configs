@@ -20,6 +20,12 @@
     "nvidia.NVreg_PreserveVideoMemoryAllocations=1"
   ];
 
+  boot.supportedFilesystems = {
+    ext4 = true;
+    vfat = true;
+    exfat = true;
+  };
+
   networking.hostName = "nixos"; # Define your hostname.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
@@ -67,6 +73,9 @@
       };
       videoDrivers = ["nvidia"];
     };
+
+    gvfs.enable = true;
+    udisks2.enable = true;
   };
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.raistah = {
@@ -83,6 +92,7 @@
   # $ nix search wget
   environment.systemPackages = with pkgs; [
     ddcutil
+    exfatprogs
     fd
     ffmpeg
     firefox
