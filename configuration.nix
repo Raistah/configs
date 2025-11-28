@@ -15,10 +15,7 @@
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
-
-  boot.kernelParams = [
-    "nvidia.NVreg_PreserveVideoMemoryAllocations=1"
-  ];
+  boot.initrd.kernelModules = [ "amdgpu" ];
 
   boot.supportedFilesystems = {
     ext4 = true;
@@ -71,7 +68,7 @@
         layout = "us, ua";
         variant = "";
       };
-      videoDrivers = ["nvidia"];
+      videoDrivers = ["amdgpu"];
     };
 
     gvfs.enable = true;
@@ -116,9 +113,11 @@
     ngrok
     nil
     nixd
+    mangohud
     p7zip
     package-version-server
     pavucontrol
+    protonplus
     qbittorrent
     resvg
     rio
@@ -137,7 +136,6 @@
     EDITOR = "vim";
   };
 
-  # Hyprland
   programs = {
     hyprland = {
       enable = true;
@@ -155,21 +153,18 @@
       };
     };
     ssh.startAgent = true;
+    steam = {
+      enable = true;
+      gamescopeSession.enable = true;
+    };
+    gamemode.enable = true;
   };
 
 
   hardware = {
-   graphics.enable = true;
-
-   nvidia = {
-    modesetting.enable = true;
-
-    nvidiaSettings = true;
-
-    open = true;
-    # Driver version
-    package = config.boot.kernelPackages.nvidiaPackages.stable;
-    powerManagement.enable = true;
+   graphics = {
+    enable = true;
+    enable32Bit = true;
    };
   };
 

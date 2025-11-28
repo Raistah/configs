@@ -1,7 +1,7 @@
 // -*- mode: jsonc -*-
 [
   {
-    "output": ["DP-6"],
+    "output": ["DP-1"],
     "height": 24, // Waybar height (to be removed for auto height)
     "spacing": 4, // Gaps between modules (4px)
     "modules-left": ["hyprland/workspaces", "hyprland/window"],

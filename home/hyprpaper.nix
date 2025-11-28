@@ -7,11 +7,11 @@
       ipc = "on";
       splash = false;
       splash_offset = 2.0;
-      
+
       preload = [ "/etc/nixos/wallpapers/aishot-2498.jpg" ];
 
       wallpaper = [
-        "DP-6, /etc/nixos/wallpapers/aishot-2498.jpg"
+        "DP-1, /etc/nixos/wallpapers/aishot-2498.jpg"
       ];
     };
   };
