@@ -77,6 +77,7 @@
     gvfs.enable = true;
     udisks2.enable = true;
   };
+
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.raistah = {
     isNormalUser = true;
@@ -86,11 +87,16 @@
   };
 
   # Allow unfree packages
-  nixpkgs.config.allowUnfree = true;
-
+  nixpkgs.config = {
+    allowUnfree = true;
+    permittedInsecurePackages = [
+      "beekeeper-studio-5.1.5"
+    ];
+  };
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
+    beekeeper-studio
     ddcutil
     exfatprogs
     fd
@@ -100,7 +106,6 @@
     git
     git-filter-repo
     gitui
-    harlequin
     hyprcursor
     hyprpicker
     hyprshot
