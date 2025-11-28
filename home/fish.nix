@@ -14,6 +14,8 @@
        	end
        	rm -f -- "$tmp"
       end
+
+      ssh-add ~/.ssh/id_rsa
     '';
 
     shellAliases = {
