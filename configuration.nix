@@ -73,6 +73,17 @@
 
     gvfs.enable = true;
     udisks2.enable = true;
+
+    udev = {
+      enable = true;
+
+      # 1 - usb switch, 2 - keyboard, 3 - mouse
+      extraRules = ''
+        SUBSYSTEM=="usb", DRIVERS=="usb", ATTRS{idVendor}=="05e3", ATTRS{idProduct}=="0625", ATTR{../power/wakeup}="enabled"
+        SUBSYSTEM=="usb", DRIVERS=="usb", ATTRS{idVendor}=="3151", ATTRS{idProduct}=="502e", ATTR{../power/wakeup}="enabled"
+        SUBSYSTEM=="usb", DRIVERS=="usb", ATTRS{idVendor}=="1d57", ATTRS{idProduct}=="fa60", ATTR{../power/wakeup}="enabled"
+      '';
+    };
   };
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
