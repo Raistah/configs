@@ -16,6 +16,7 @@
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
   boot.initrd.kernelModules = [ "amdgpu" ];
+  boot.kernelParams = [ "amdgpu.runpm=0" ];
 
   boot.supportedFilesystems = {
     ext4 = true;
@@ -31,7 +32,10 @@
   # networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
 
   # Enable networking
-  networking.networkmanager.enable = true;
+  networking = {
+    networkmanager.enable = true;
+  };
+
 
   # Set your time zone.
   time.timeZone = "Europe/Kyiv";
@@ -86,6 +90,16 @@
     };
   };
 
+  systemd.services.lact = {
+    description = "AMDGPU Control Daemon";
+    after = ["multi-user.target"];
+    wantedBy = ["multi-user.target"];
+    serviceConfig = {
+      ExecStart = "${pkgs.lact}/bin/lact daemon";
+    };
+    enable = true;
+  };
+
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.raistah = {
     isNormalUser = true;
@@ -101,6 +115,7 @@
       "beekeeper-studio-5.1.5"
     ];
   };
+
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
@@ -120,6 +135,7 @@
     imagemagick
     kdePackages.dolphin
     killall
+    lact
     libnotify
     ngrok
     nil
@@ -173,10 +189,10 @@
 
 
   hardware = {
-   graphics = {
-    enable = true;
-    enable32Bit = true;
-   };
+    graphics = {
+      enable = true;
+      enable32Bit = true;
+    };
   };
 
   # Fonts
