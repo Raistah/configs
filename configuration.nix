@@ -119,6 +119,7 @@
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
+    amdgpu_top
     beekeeper-studio
     ddcutil
     exfatprogs
@@ -141,6 +142,7 @@
     nil
     nixd
     mangohud
+    mesa
     p7zip
     package-version-server
     pavucontrol
@@ -157,6 +159,10 @@
     yazi
     zoxide
   ];
+
+  environment.variables = {
+    AMD_VULKAN_ICD = "RADV";
+  };
 
   environment.sessionVariables = {
     NIXOS_OZONE_WL = "1";
@@ -193,6 +199,7 @@
       enable = true;
       enable32Bit = true;
     };
+    enableRedistributableFirmware = true;
   };
 
   # Fonts
