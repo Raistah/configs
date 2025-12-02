@@ -17,8 +17,8 @@
             on-resume = "brightnessctl -r";
         }
         # turn off keyboard backlight, comment out this section if you dont have a keyboard backlight.
-        { 
-            timeout = 150;
+        {
+            timeout = 170;
             on-timeout = "brightnessctl -sd rgb:kbd_backlight set 0";
             on-resume = "brightnessctl -rd rgb:kbd_backlight";
         }
@@ -32,7 +32,7 @@
             on-resume = "hyprctl dispatch dpms on && brightnessctl -r";
         }
         {
-            timeout = 1800;
+            timeout = 600;
             on-timeout = "systemctl suspend";
         }
       ];
