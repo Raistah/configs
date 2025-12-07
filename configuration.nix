@@ -88,6 +88,17 @@
         SUBSYSTEM=="usb", DRIVERS=="usb", ATTRS{idVendor}=="1d57", ATTRS{idProduct}=="fa60", ATTR{../power/wakeup}="enabled"
       '';
     };
+
+    mysql = {
+	    package = pkgs.mariadb;
+	    enable = true;
+	    ensureUsers = [{
+        name = "root";
+        ensurePermissions = {
+    	    "myDatabase.*" = "ALL PRIVILEGES";
+        };
+	    }];
+    };
   };
 
   systemd.services.lact = {
@@ -105,7 +116,6 @@
     isNormalUser = true;
     description = "Raistah";
     extraGroups = [ "networkmanager" "wheel" ];
-    packages = with pkgs; [];
   };
 
   # Allow unfree packages
