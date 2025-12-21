@@ -140,6 +140,7 @@
     git
     git-filter-repo
     gitui
+    gnutar
     hyprcursor
     hyprpicker
     hyprshot
@@ -148,11 +149,11 @@
     killall
     lact
     libnotify
+    mangohud
+    mesa
     ngrok
     nil
     nixd
-    mangohud
-    mesa
     p7zip
     package-version-server
     pavucontrol
