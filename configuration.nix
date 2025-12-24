@@ -122,7 +122,7 @@
   nixpkgs.config = {
     allowUnfree = true;
     permittedInsecurePackages = [
-      "beekeeper-studio-5.1.5"
+      "beekeeper-studio-5.3.4"
     ];
   };
 
