@@ -20,25 +20,25 @@ disable-warnings-not-found = false
 additional-dirs = []
 
 [fonts.regular]
-family = "CaskaydiaCove NF"
+family = "CaskaydiaCove Nerd Font"
 style = "Normal"
 width = "Normal"
 weight = 400
 
 [fonts.bold]
-family = "CaskaydiaCove NF"
+family = "CaskaydiaCove Nerd Font"
 style = "Normal"
 width = "Normal"
 weight = 800
 
 [fonts.italic]
-family = "CaskaydiaCove NF"
+family = "CaskaydiaCove Nerd Font"
 style = "Italic"
 width = "Normal"
 weight = 400
 
 [fonts.bold-italic]
-family = "CaskaydiaCove NF"
+family = "CaskaydiaCove Nerd Font"
 style = "Italic"
 width = "Normal"
 weight = 800

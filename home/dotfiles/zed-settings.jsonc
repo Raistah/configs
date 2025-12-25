@@ -38,6 +38,12 @@
           "Blade"
         ]
       }
+    },
+    "vtsls": {
+      "binary": {
+        "path": "vtsls",
+        "arguments": ["--stdio"]
+      }
     }
   },
   "languages": {
@@ -46,7 +52,7 @@
     },
     "JavaScript": {
       "tab_size": 4,
-      "language_servers": ["eslint"]
+      "language_servers": ["vtsls", "typescript-language-server", "!eslint"],
     },
     "PHP": {
       "tab_size": 4,

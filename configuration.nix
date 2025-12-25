@@ -60,7 +60,7 @@
       enable = true;
       settings = {
         default_session = {
-          command = "${pkgs.greetd.tuigreet}/bin/tuigreet --remember --remember-user-session --time --sessions /etc/nixos/desktop";
+          command = "${pkgs.tuigreet}/bin/tuigreet --remember --remember-user-session --time --sessions /etc/nixos/desktop";
           user = "raistah";
         };
       };
@@ -129,6 +129,7 @@
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
+		vtsls
     amdgpu_top
     beekeeper-studio
     ddcutil
@@ -154,6 +155,7 @@
     ngrok
     nil
     nixd
+    nodejs_24
     p7zip
     package-version-server
     pavucontrol
