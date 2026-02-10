@@ -33,10 +33,7 @@
 
   # Enable networking
   networking = {
-    networkmanager = {
-    	enable = true;
-    	wifi.backend = "iwd";
-    };
+    networkmanager.enable = true;
   };
 
 
@@ -151,7 +148,6 @@
     hyprpicker
     hyprshot
     imagemagick
-    impala
     kdePackages.dolphin
     killall
     lact
