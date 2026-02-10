@@ -33,7 +33,10 @@
 
   # Enable networking
   networking = {
-    networkmanager.enable = true;
+    networkmanager = {
+    	enable = true;
+    	wifi.backend = "iwd";
+    };
   };
 
 
@@ -132,6 +135,8 @@
 		vtsls
     amdgpu_top
     beekeeper-studio
+    bluez
+    bluetui
     ddcutil
     exfatprogs
     fd
@@ -146,6 +151,7 @@
     hyprpicker
     hyprshot
     imagemagick
+    impala
     kdePackages.dolphin
     killall
     lact
@@ -213,6 +219,7 @@
       enable32Bit = true;
     };
     enableRedistributableFirmware = true;
+    bluetooth.enable = true;
   };
 
   # Fonts

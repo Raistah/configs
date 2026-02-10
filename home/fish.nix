@@ -16,6 +16,7 @@
       end
 
       ssh-add ~/.ssh/id_rsa
+      clear
     '';
 
     shellAliases = {
