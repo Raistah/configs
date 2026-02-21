@@ -99,6 +99,10 @@
         };
 	    }];
     };
+
+    redis = {
+   		enable = true;
+    };
   };
 
   systemd.services.lact = {
@@ -148,6 +152,7 @@
     hyprpicker
     hyprshot
     imagemagick
+    impala
     kdePackages.dolphin
     killall
     lact

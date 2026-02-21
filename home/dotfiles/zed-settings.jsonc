@@ -22,6 +22,7 @@
         "languages": [
           "Vue.js",
           "HTML",
+          "Jinja2",
           "PHP",
           "ERB",
           "JavaScript",
