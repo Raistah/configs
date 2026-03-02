@@ -87,6 +87,17 @@
         SUBSYSTEM=="usb", DRIVERS=="usb", ATTRS{idVendor}=="3151", ATTRS{idProduct}=="502e", ATTR{../power/wakeup}="enabled"
         SUBSYSTEM=="usb", DRIVERS=="usb", ATTRS{idVendor}=="1d57", ATTRS{idProduct}=="fa60", ATTR{../power/wakeup}="enabled"
       '';
+
+      packages = [
+	     	(pkgs.writeTextFile {
+					name = "probe-rs_udev";
+					# text = ''
+					# 	hehe
+					# '';
+					text = builtins.readFile ./udev/69-probe-rs.rules;
+					destination = "/etc/udev/rules.d/69-probe-rs.rules";
+	      })
+      ];
     };
 
     mysql = {
@@ -115,11 +126,14 @@
     enable = true;
   };
 
+  users.groups = {
+  	plugdev = {};
+  };
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.raistah = {
     isNormalUser = true;
     description = "Raistah";
-    extraGroups = [ "networkmanager" "wheel" ];
+    extraGroups = [ "networkmanager" "wheel" "plugdev" ];
   };
 
   # Allow unfree packages
@@ -211,6 +225,7 @@
       gamescopeSession.enable = true;
     };
     gamemode.enable = true;
+    nix-ld.enable = true;
   };
 
 
