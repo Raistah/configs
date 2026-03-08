@@ -4,7 +4,9 @@ format = """
 [](color_orange)\
 $os\
 $username\
-[](bg:color_yellow fg:color_orange)\
+[](bg:color_aqua fg:color_orange)\
+$nix_shell\
+[](bg:color_yellow fg:color_aqua)\
 $directory\
 [](fg:color_yellow bg:color_aqua)\
 $git_branch\
@@ -178,3 +180,11 @@ vimcmd_symbol = '[](bold fg:color_green)'
 vimcmd_replace_one_symbol = '[](bold fg:color_purple)'
 vimcmd_replace_symbol = '[](bold fg:color_purple)'
 vimcmd_visual_symbol = '[](bold fg:color_yellow)'
+
+[nix_shell]
+disabled = false
+style = "fg:color_fg0 bg:color_aqua"
+impure_msg = ''
+pure_msg = ''
+unknown_msg = ''
+format = '[ 󱄅 $name ]($style)'
