@@ -111,7 +111,7 @@
 	    }];
     };
 
-    redis = {
+    redis.servers."" = {
    		enable = true;
     };
   };
