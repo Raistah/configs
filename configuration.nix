@@ -182,6 +182,8 @@
     pavucontrol
     protonplus
     qbittorrent
+		signal-desktop
+		zoxide
     resvg
     rio
     ripgrep
@@ -191,7 +193,6 @@
     wget
     wl-clipboard
     yazi
-    zoxide
   ];
 
   environment.variables = {
