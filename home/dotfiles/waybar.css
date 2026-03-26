@@ -85,19 +85,20 @@ button:hover {
     background-color: #b16286;
 }
 
-#idle_inhibitor,
-#cava,
-#scratchpad,
-#mode,
-#window,
-#clock,
-#battery,
 #backlight,
-#wireplumber,
-#tray,
-#mpris,
-#memory,
+#battery,
+#cava,
+#clock,
+#idle_inhibitor,
 #language,
+#memory,
+#mode,
+#mpris,
+#network,
+#scratchpad,
+#tray,
+#window,
+#wireplumber,
 #load {
     padding: 0 10px;
     background-color: #282828;

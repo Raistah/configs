@@ -1,113 +1,146 @@
 // -*- mode: jsonc -*-
 [
-  {
-    "output": ["DP-1"],
-    "height": 24, // Waybar height (to be removed for auto height)
-    "spacing": 4, // Gaps between modules (4px)
-    "modules-left": ["hyprland/workspaces", "hyprland/window"],
-    "modules-center": ["mpris"],
-    "modules-right": [
-      "load",
-      "memory",
-      "wireplumber",
-      "hyprland/language",
-      "clock",
-      "tray",
-    ],
-    // Modules configuration
-    "hyprland/workspaces": {
-      "all-outputs": true,
-      "warp-on-scroll": false,
-      "enable-bar-scroll": true,
-      "disable-scroll-wraparound": true,
-      "format": "{icon}",
-      "format-icons": {
-        "1": "",
-        "2": "",
-        "3": "",
-        "4": "",
-        "5": "",
-        "9": "",
-        "10": "",
-      },
-    },
-    "hyprland/window": {
-      "format": "{title}",
-      "max-length": 40,
-      "all-outputs": true,
-    },
-    "hyprland/language": {
-      "format": "{}",
-      "format-en": "ENG",
-      "format-uk": "UKR",
-    },
-    "mpris": {
-      "format": " {status_icon} {dynamic}",
-      "interval": 1,
-      "dynamic-len": 40,
-      "status-icons": {
-        "playing": "▶",
-        "paused": "⏸",
-        "stopped": "",
-      },
-      "dynamic-order": ["title", "artist"],
-      "ignored-players": ["firefox"],
-    },
-    "tray": {
-      "icon-size": 14,
-      "spacing": 10,
-    },
-    "load": {
-      "format": " {}",
-    },
-    "clock": {
-      // "timezone": "America/New_York",
-      "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
-      "format-alt": "{:%Y-%m-%d}",
-    },
-    "memory": {
-      "format": "{}% ",
-    },
-    "wireplumber": {
-      "scroll-step": 5, // %, can be a float
-      "format": "{icon} {volume}%",
-      "format-bluetooth": "{icon} {volume}% ",
-      "format-bluetooth-muted": " {icon}",
-      "format-muted": "",
-      "format-icons": {
-        "headphone": "",
-        "hands-free": "",
-        "headset": "󰋎",
-        "phone": "",
-        "portable": "",
-        "car": "",
-        "default": ["", "", ""],
-      },
-      "on-click": "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle",
-      "on-click-right": "uwsm app -- pavucontrol",
-    },
-  },
-  {
-    "output": ["HDMI-A-1"],
-    "height": 24, // Waybar height (to be removed for auto height)
-    "spacing": 4, // Gaps between modules (4px)
-    "modules-left": ["hyprland/workspaces"],
-    "modules-center": [],
-    "modules-right": [],
-    "hyprland/workspaces": {
-      "all-outputs": true,
-      "warp-on-scroll": true,
-      "enable-bar-scroll": true,
-      "format": "{icon}",
-      "format-icons": {
-        "1": "",
-        "2": "",
-        "3": "",
-        "4": "",
-        "5": "",
-        "9": "",
-        "10": "",
-      },
-    },
-  },
+	{
+		"output": [
+			"DP-1"
+		],
+		"height": 24, // Waybar height (to be removed for auto height)
+		"spacing": 4, // Gaps between modules (4px)
+		"modules-left": [
+			"hyprland/workspaces",
+			"hyprland/window"
+		],
+		"modules-center": [
+			"mpris"
+		],
+		"modules-right": [
+			"load",
+			"memory",
+			"wireplumber",
+			"network",
+			"hyprland/language",
+			"clock",
+			"tray",
+		],
+		// Modules configuration
+		"hyprland/workspaces": {
+			"all-outputs": true,
+			"warp-on-scroll": false,
+			"enable-bar-scroll": true,
+			"disable-scroll-wraparound": true,
+			"format": "{icon}",
+			"format-icons": {
+				"1": "",
+				"2": "",
+				"3": "",
+				"4": "",
+				"5": "",
+				"9": "",
+				"10": "",
+			},
+		},
+		"hyprland/window": {
+			"format": "{title}",
+			"max-length": 40,
+			"all-outputs": true,
+		},
+		"hyprland/language": {
+			"format": "{}",
+			"format-en": "ENG",
+			"format-uk": "UKR",
+		},
+		"mpris": {
+			"format": " {status_icon} {dynamic}",
+			"interval": 1,
+			"dynamic-len": 40,
+			"status-icons": {
+				"playing": "▶",
+				"paused": "⏸",
+				"stopped": "",
+			},
+			"dynamic-order": [
+				"title",
+				"artist"
+			],
+			"ignored-players": [
+				"firefox"
+			],
+		},
+		"tray": {
+			"icon-size": 14,
+			"spacing": 10,
+		},
+		"load": {
+			"format": " {}",
+		},
+		"clock": {
+			// "timezone": "America/New_York",
+			"tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
+			"format-alt": "{:%Y-%m-%d}",
+		},
+		"network": {
+			"interface": "wlan0",
+			"format": "{ifname}",
+			"format-wifi": "{essid} ({signalStrength}%) ",
+			"format-ethernet": "{ipaddr}/{cidr} 󰊗",
+			"format-disconnected": "disconnected", //An empty format will hide the module.
+			"tooltip-format": "{ifname} via {gwaddr} 󰊗",
+			"tooltip-format-wifi": "{essid} ({signalStrength}%) ",
+			"tooltip-format-ethernet": "{ifname} ",
+			"tooltip-format-disconnected": "Disconnected",
+			"max-length": 50
+		},
+		"memory": {
+			"format": "{}% ",
+		},
+		"wireplumber": {
+			"scroll-step": 5, // %, can be a float
+			"format": "{icon} {volume}%",
+			"format-bluetooth": "{icon} {volume}% ",
+			"format-bluetooth-muted": " {icon}",
+			"format-muted": "",
+			"format-icons": {
+				"headphone": "",
+				"hands-free": "",
+				"headset": "󰋎",
+				"phone": "",
+				"portable": "",
+				"car": "",
+				"default": [
+					"",
+					"",
+					""
+				],
+			},
+			"on-click": "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle",
+			"on-click-right": "uwsm app -- pavucontrol",
+		},
+	},
+	{
+		"output": [
+			"HDMI-A-1"
+		],
+		"height": 24, // Waybar height (to be removed for auto height)
+		"spacing": 4, // Gaps between modules (4px)
+		"modules-left": [
+			"hyprland/workspaces"
+		],
+		"modules-center": [],
+		"modules-right": [],
+		"hyprland/workspaces": {
+			"all-outputs": true,
+			"warp-on-scroll": true,
+			"enable-bar-scroll": true,
+			"format": "{icon}",
+			"format-icons": {
+				"1": "",
+				"2": "",
+				"3": "",
+				"4": "",
+				"5": "",
+				"9": "",
+				"10": "",
+			},
+		},
+	},
 ]
