@@ -16,7 +16,7 @@
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
   boot.initrd.kernelModules = [ "amdgpu" ];
-  boot.kernelParams = [ "amdgpu.runpm=0" ];
+  boot.kernelParams = [ "amdgpu.runpm=0" "mem_sleep_default=deep" ];
 
   boot.supportedFilesystems = {
     ext4 = true;
@@ -147,11 +147,13 @@
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
+		signal-desktop
 		vtsls
+		zoxide
     amdgpu_top
     beekeeper-studio
-    bluez
     bluetui
+    bluez
     ddcutil
     exfatprogs
     fd
@@ -167,6 +169,7 @@
     hyprshot
     imagemagick
     impala
+    jq
     kdePackages.dolphin
     killall
     lact
@@ -182,8 +185,6 @@
     pavucontrol
     protonplus
     qbittorrent
-		signal-desktop
-		zoxide
     resvg
     rio
     ripgrep
