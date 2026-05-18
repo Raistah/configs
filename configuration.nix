@@ -8,6 +8,7 @@
   imports =
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
+      ./secrets.nix
     ];
 
   # Enable Flakes
@@ -159,6 +160,7 @@
 		vtsls
 		zoxide
     amdgpu_top
+    balena-cli
     beekeeper-studio
     bluetui
     bluez
@@ -188,6 +190,7 @@
     mangohud
     mesa
     ngrok
+    nh
     nil
     nixd
     nodejs_24
@@ -202,7 +205,9 @@
     resvg
     rio
     ripgrep
+    sops
     sqlite
+    ssh-to-age
     unzip
     usbutils
     vlc
@@ -285,6 +290,10 @@
   networking.firewall.enable = true;
   networking.firewall.allowedTCPPorts = [ 80 443 3128 ];
   # networking.firewall.allowedUDPPorts = [ ... ];
+
+  # security.pki.certificateFiles = [
+  # 	(builtins.toFile "balena.crt" (builtins.readFile /etc/nixos/certs/ca-balena.pem))
+  # ];
 
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions

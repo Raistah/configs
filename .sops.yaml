@@ -1,0 +1,7 @@
+keys:
+  - &admin_pc age1my2x23x0u7hykc0enyh3zqzmsj3jhjgwezk58jcemswctgj6nawqv3xfd5
+creation_rules:
+  # This makes sure anything matching "secrets/something" gets encrypted with your key
+  - path_regex: ^secrets/.*$
+    age:
+      - *admin_pc
