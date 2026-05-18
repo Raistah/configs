@@ -129,11 +129,19 @@
   users.groups = {
   	plugdev = {};
   };
-  # Define a user account. Don't forget to set a password with ‘passwd’.
+
   users.users.raistah = {
     isNormalUser = true;
     description = "Raistah";
-    extraGroups = [ "networkmanager" "wheel" "plugdev" ];
+    extraGroups = [ "networkmanager" "wheel" "plugdev" "docker" ];
+  };
+
+  # Define a balena user for openbalena server
+  users.users.balena = {
+    isNormalUser = true;
+    description = "Balena Engine User";
+    extraGroups = [ "networkmanager" "wheel" "docker" ];
+    shell = pkgs.bash;
   };
 
   # Allow unfree packages
@@ -154,6 +162,8 @@
     beekeeper-studio
     bluetui
     bluez
+    bmaptool
+    bottom
     ddcutil
     exfatprogs
     fd
@@ -163,6 +173,7 @@
     git
     git-filter-repo
     gitui
+    gnumake
     gnutar
     hyprcursor
     hyprpicker
@@ -180,9 +191,12 @@
     nil
     nixd
     nodejs_24
+    openssl
     p7zip
     package-version-server
     pavucontrol
+    picocom
+    pkg-config
     protonplus
     qbittorrent
     resvg
@@ -190,11 +204,20 @@
     ripgrep
     sqlite
     unzip
+    usbutils
     vlc
     wget
     wl-clipboard
     yazi
   ];
+
+  virtualisation.docker = {
+  	enable = true;
+		rootless = {
+			enable = true;
+			setSocketVariable = true;
+		};
+  };
 
   environment.variables = {
     AMD_VULKAN_ICD = "RADV";
@@ -259,10 +282,9 @@
   # services.openssh.enable = true;
 
   # Open ports in the firewall.
-  # networking.firewall.allowedTCPPorts = [ ... ];
+  networking.firewall.enable = true;
+  networking.firewall.allowedTCPPorts = [ 80 443 3128 ];
   # networking.firewall.allowedUDPPorts = [ ... ];
-  # Or disable the firewall altogether.
-  # networking.firewall.enable = false;
 
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions
@@ -271,5 +293,4 @@
   # Before changing this value read the documentation for this option
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
   system.stateVersion = "25.05"; # Did you read the comment?
-
 }
