@@ -2,13 +2,18 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ config, pkgs, ... }:
-
+{ config, pkgs, inputs, ... }:
+let
+	pkgs-unstable = import inputs.nixpkgs-unstable {
+    inherit (pkgs) system;
+    config.allowUnfree = true; # Ensures unfree settings carry over if needed
+  };
+  in
 {
   imports =
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
-      ./secrets.nix
+      # ./secrets.nix
     ];
 
   # Enable Flakes
@@ -127,6 +132,17 @@
     enable = true;
   };
 
+  systemd.services.greetd.serviceConfig = {
+   	Type = "idle";
+    StandardInput = "tty";
+    StandardOutput = "tty";
+    StandardError = "tty";
+
+    TTYReset = true;
+    TTYHangup = true;
+    TTYDisallocate = true;
+  };
+
   users.groups = {
   	plugdev = {};
   };
@@ -160,7 +176,7 @@
 		vtsls
 		zoxide
     amdgpu_top
-    balena-cli
+    pkgs-unstable.balena-cli
     beekeeper-studio
     bluetui
     bluez
@@ -214,6 +230,7 @@
     wget
     wl-clipboard
     yazi
+    qemu
   ];
 
   virtualisation.docker = {
@@ -222,6 +239,11 @@
 			enable = true;
 			setSocketVariable = true;
 		};
+  };
+
+  boot.binfmt = {
+  	emulatedSystems = [ "aarch64-linux" ];
+	  preferStaticEmulators = true;
   };
 
   environment.variables = {
@@ -290,10 +312,6 @@
   networking.firewall.enable = true;
   networking.firewall.allowedTCPPorts = [ 80 443 3128 ];
   # networking.firewall.allowedUDPPorts = [ ... ];
-
-  # security.pki.certificateFiles = [
-  # 	(builtins.toFile "balena.crt" (builtins.readFile /etc/nixos/certs/ca-balena.pem))
-  # ];
 
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions
