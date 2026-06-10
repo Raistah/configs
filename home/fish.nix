@@ -22,6 +22,8 @@
     shellAliases = {
       zed = "zeditor";
       "nix-dev" = "nix develop --command fish";
+      "cansleep" = ''sudo pkill -f "sleep infinity"'';
+      "nosleep" = "fish -c 'systemd-inhibit --what=idle:sleep --who=\"Manual Toggle\" --why=\"User requested\" sleep infinity &'";
     };
   };
 }

@@ -67,6 +67,9 @@
       "tab_size": 2,
       "language_servers": ["nixd", "nil"],
       "formatter": "auto"
+    },
+    "Python": {
+      "language_servers": ["pyright", "!ruff", "!basedpyright", "!ty", "!pylsp"],
     }
   }
 }

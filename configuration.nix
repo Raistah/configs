@@ -21,8 +21,16 @@ let
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
-  boot.initrd.kernelModules = [ "amdgpu" ];
+  boot.initrd.kernelModules = [
+    "amdgpu"
+    "ip_tables"
+    "iptable_filter"
+    "iptable_nat"
+  ];
   boot.kernelParams = [ "amdgpu.runpm=0" "mem_sleep_default=deep" ];
+  boot.kernel.sysctl."net.ipv4.conf.all.forwarding" = true;
+  boot.kernel.sysctl."net.ipv4.forwarding" = true;
+  boot.kernel.sysctl."net.ipv4.ip_forward" = 1;
 
   boot.supportedFilesystems = {
     ext4 = true;
@@ -108,7 +116,7 @@ let
 
     mysql = {
 	    package = pkgs.mariadb;
-	    enable = true;
+	    enable = false;
 	    ensureUsers = [{
         name = "root";
         ensurePermissions = {
@@ -118,7 +126,11 @@ let
     };
 
     redis.servers."" = {
-   		enable = true;
+   		enable = false;
+    };
+
+    zerotierone = {
+      enable = true;
     };
   };
 
@@ -176,19 +188,19 @@ let
 		vtsls
 		zoxide
     amdgpu_top
-    pkgs-unstable.balena-cli
     beekeeper-studio
     bluetui
     bluez
     bmaptool
     bottom
+    bruno
     ddcutil
+    docker-buildx
     exfatprogs
     fd
     ffmpeg
     firefox
     fzf
-    git
     git-filter-repo
     gitui
     gnumake
@@ -198,11 +210,14 @@ let
     hyprshot
     imagemagick
     impala
+    iptables
     jq
     kdePackages.dolphin
     killall
     lact
+    lazydocker
     libnotify
+    lsof
     mangohud
     mesa
     ngrok
@@ -216,29 +231,28 @@ let
     pavucontrol
     picocom
     pkg-config
+    pkgs-unstable.balena-cli
     protonplus
     qbittorrent
+    qemu
+    redisinsight
     resvg
     rio
     ripgrep
     sops
     sqlite
     ssh-to-age
+    ungoogled-chromium
     unzip
     usbutils
     vlc
     wget
     wl-clipboard
     yazi
-    qemu
   ];
 
   virtualisation.docker = {
-  	enable = true;
-		rootless = {
-			enable = true;
-			setSocketVariable = true;
-		};
+    enable = true;
   };
 
   boot.binfmt = {
@@ -278,6 +292,10 @@ let
     };
     gamemode.enable = true;
     nix-ld.enable = true;
+    git = {
+      enable = true;
+      lfs.enable = true;
+    };
   };
 
 
@@ -309,9 +327,12 @@ let
   # services.openssh.enable = true;
 
   # Open ports in the firewall.
-  networking.firewall.enable = true;
-  networking.firewall.allowedTCPPorts = [ 80 443 3128 ];
-  # networking.firewall.allowedUDPPorts = [ ... ];
+  networking.firewall = {
+    enable = false;
+    allowedTCPPorts = [ 80 443 3128 ];
+    allowedUDPPorts = [ 80 9993 ];
+    trustedInterfaces = [ "docker0" ];
+  };
 
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions
