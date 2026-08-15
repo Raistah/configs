@@ -128,10 +128,6 @@ let
     redis.servers."" = {
    		enable = false;
     };
-
-    zerotierone = {
-      enable = true;
-    };
   };
 
   systemd.services.lact = {
@@ -329,7 +325,7 @@ let
   # Open ports in the firewall.
   networking.firewall = {
     enable = false;
-    allowedTCPPorts = [ 80 443 3128 ];
+    allowedTCPPorts = [ 80 443 3128 17011 ];
     allowedUDPPorts = [ 80 9993 ];
     trustedInterfaces = [ "docker0" ];
   };

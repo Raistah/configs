@@ -1,4 +1,5 @@
 use-fork = false
+confirm-before-quit = false
 
 [shell]
 program = "fish"
