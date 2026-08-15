@@ -23,9 +23,6 @@ let
   boot.loader.efi.canTouchEfiVariables = true;
   boot.initrd.kernelModules = [
     "amdgpu"
-    "ip_tables"
-    "iptable_filter"
-    "iptable_nat"
   ];
   boot.kernelParams = [ "amdgpu.runpm=0" "mem_sleep_default=deep" ];
   boot.kernel.sysctl."net.ipv4.conf.all.forwarding" = true;
@@ -161,14 +158,6 @@ let
     extraGroups = [ "networkmanager" "wheel" "plugdev" "docker" ];
   };
 
-  # Define a balena user for openbalena server
-  users.users.balena = {
-    isNormalUser = true;
-    description = "Balena Engine User";
-    extraGroups = [ "networkmanager" "wheel" "docker" ];
-    shell = pkgs.bash;
-  };
-
   # Allow unfree packages
   nixpkgs.config = {
     allowUnfree = true;
@@ -227,11 +216,10 @@ let
     pavucontrol
     picocom
     pkg-config
-    pkgs-unstable.balena-cli
     protonplus
     qbittorrent
     qemu
-    redisinsight
+    # redisinsight
     resvg
     rio
     ripgrep

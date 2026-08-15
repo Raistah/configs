@@ -22,13 +22,13 @@
   home.homeDirectory = "/home/raistah";
 
   home.packages = with pkgs; [
-   neofetch
+   fastfetch
    btop
   ];
 
   home.file = {
-    ".config/hypr/hyprland.conf" = {
-      source = ./home/dotfiles/hyprland.conf;
+    ".config/hypr/hyprland.lua" = {
+      source = ./home/dotfiles/hyprland.lua;
       recursive = true;
     };
     ".config/rio/config.toml" = {
