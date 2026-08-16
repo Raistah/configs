@@ -177,8 +177,8 @@ hl.window_rule({
     },
     float = true,
     pin = true,
-    size = "{800, 600}",
-    move = "{4310, 980}",
+    size = {800, 450},
+    move = {4310, 980},
     no_initial_focus = true,
 })
 
@@ -193,7 +193,7 @@ hl.bind(mainMod .. " + E", hl.dsp.exec_cmd(fileManager))
 hl.bind(mainMod .. " + R", hl.dsp.exec_cmd(menu .. " | xargs hyprctl dispatch exec --"))
 hl.bind(mainMod .. " + J", hl.dsp.layout("togglesplit"))
 hl.bind(mainMod .. " + L", hl.dsp.exec_cmd("hyprlock"))
-hl.bind(mainMod .. " + B", hl.dsp.layout("walker -m clipboard"))
+hl.bind(mainMod .. " + B", hl.dsp.exec_cmd("walker -m clipboard"))
 
 -- Toggle window properties
 hl.bind(mainMod .. " + V", hl.dsp.window.float({ action = "toggle" }))
@@ -214,9 +214,10 @@ hl.bind(mainMod .. " + SHIFT + P", hl.dsp.exec_cmd("poweroff"))
 hl.bind(mainMod .. " + SHIFT + O", hl.dsp.exec_cmd("systemctl suspend"))
 
 -- Screenshots / Screencapture
-hl.bind(" + PRINT", hl.dsp.exec_cmd("hyprshot -m output --clipboard-only"))
-hl.bind(mainMod .. " + PRINT", hl.dsp.exec_cmd("hyprshot -m output --clipboard-only"))
+hl.bind("PRINT", hl.dsp.exec_cmd("hyprshot -m output --clipboard-only"))
+hl.bind(mainMod .. " + PRINT", hl.dsp.exec_cmd("hyprshot -m window --clipboard-only"))
 hl.bind(mainMod .. " + SHIFT + PRINT", hl.dsp.exec_cmd("hyprshot -m region --clipboard-only"))
+hl.bind(mainMod .. " + ALT + PRINT", hl.dsp.exec_cmd("~/scripts/screenshots_menu.sh"))
 
 -- Switch workspaces with mainMod + [0-9]
 -- Move active window to a workspace with mainMod + SHIFT + [0-9]

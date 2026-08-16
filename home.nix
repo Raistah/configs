@@ -39,6 +39,12 @@
       source = ./home/icons/Nordzy-hyprcursors;
       recursive = true;
     };
+
+    "scripts/screenshots_menu.sh" = {
+      source = ./home/scripts/screenshots_menu.sh;
+      recursive = true;
+      executable = true;
+    };
   };
 
   home.stateVersion = "25.05";
