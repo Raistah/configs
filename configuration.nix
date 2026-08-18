@@ -125,6 +125,13 @@ let
     redis.servers."" = {
    		enable = false;
     };
+
+    pipewire = {
+      enable = true;
+      alsa.enable = true;
+      alsa.support32Bit = true;
+      pulse.enable = true;
+    };
   };
 
   systemd.services.lact = {
@@ -181,6 +188,7 @@ let
     bruno
     ddcutil
     docker-buildx
+    eww
     exfatprogs
     fd
     ffmpeg
@@ -219,10 +227,10 @@ let
     protonplus
     qbittorrent
     qemu
-    # redisinsight
     resvg
     rio
     ripgrep
+    rust-script
     sops
     sqlite
     ssh-to-age
@@ -233,6 +241,7 @@ let
     wget
     wl-clipboard
     yazi
+    # redisinsight
   ];
 
   virtualisation.docker = {

@@ -76,3 +76,6 @@ keys = [
     { key = "]", with = "shift | control", action = "SelectNextSplitOrTab" },
     { key = "[", with = "shift | control", action = "SelectPrevSplitOrTab" }
 ]
+
+[renderer]
+backend = "Vulkan"

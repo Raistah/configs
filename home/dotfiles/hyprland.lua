@@ -18,6 +18,7 @@ hl.monitor({
     scale = 1,
 })
 
+hl.env("AQ_DRM_DEVICES", "/dev/dri/card1:/dev/dri/card0")
 hl.env("XCURSOR_SIZE", "24")
 hl.env("HYPRCURSOR_SIZE", "24")
 hl.env("HYPRCURSOR_THEME", "Nordzy-cursor")
@@ -138,6 +139,9 @@ hl.config({
         kb_options   = "grp:win_space_toggle",
         kb_rules     = "",
 
+        repeat_rate  = 40,
+        repeat_delay = 250,
+
         follow_mouse = 0,
         sensitivity  = 0,
 
@@ -177,8 +181,8 @@ hl.window_rule({
     },
     float = true,
     pin = true,
-    size = {800, 450},
-    move = {4310, 980},
+    size = { 800, 450 },
+    move = { 4310, 980 },
     no_initial_focus = true,
 })
 
