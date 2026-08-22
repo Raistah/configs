@@ -45,6 +45,46 @@
       recursive = true;
       executable = true;
     };
+
+    # eww
+    ".config/eww/eww.yuck" = {
+      source = ./home/eww/eww.yuck;
+      recursive = true;
+    };
+    ".config/eww/eww.scss" = {
+      source = ./home/eww/eww.scss;
+      recursive = true;
+    };
+    "scripts/read-volume.sh" = {
+      source = ./home/eww/read-volume.sh;
+      recursive = true;
+      executable = true;
+    };
+    "scripts/system-monitor.sh" = {
+      source = ./home/eww/system-monitor.sh;
+      recursive = true;
+      executable = true;
+    };
+    "scripts/watch-active-window.sh" = {
+      source = ./home/eww/watch-active-window.sh;
+      recursive = true;
+      executable = true;
+    };
+    "scripts/watch-all-workspaces.sh" = {
+      source = ./home/eww/watch-all-workspaces.sh;
+      recursive = true;
+      executable = true;
+    };
+    "scripts/watch-connected-network.sh" = {
+      source = ./home/eww/watch-connected-network.sh;
+      recursive = true;
+      executable = true;
+    };
+    "scripts/watch-kb-layout.sh" = {
+      source = ./home/eww/watch-kb-layout.sh;
+      recursive = true;
+      executable = true;
+    };
   };
 
   home.stateVersion = "25.05";

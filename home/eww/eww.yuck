@@ -1,0 +1,144 @@
+(deflisten all_workspaces :initial "{}"
+  "~/scripts/watch-all-workspaces.sh")
+
+(deflisten active_window_title :initial ""
+  "~/scripts/watch-active-window.sh")
+
+(deflisten network_status :initial "󰤭 Connecting..."
+  "~/scripts/watch-connected-network.sh")
+
+(deflisten kb_layout :initial "EN"
+  "~/scripts/watch-kb-layout.sh")
+
+(deflisten volume_status :initial "󰕾  50%"
+  "~/scripts/read-volume.sh")
+
+;; Poll time every 1 second
+(defpoll time :interval "1s"
+  "LC_TIME=en_US.UTF-8 date '+%H:%M'")
+
+;; Hover state variable
+(defvar date_hover false)
+
+;; ISO date (shown on hover)
+(defpoll date_full :interval "1m"
+  "date '+%Y-%m-%d'")
+
+;; Poll date every 1 minute
+(defpoll date_short :interval "1m"
+  "LC_TIME=en_US.UTF-8 date '+%a, %b %d'")
+
+;; Poll stats every 2 seconds
+(defpoll sys_stats :interval "2s"
+  "~/scripts/system-monitor.sh")
+
+(defwidget workspaces [mon_name]
+    (box :class "workspaces"
+        :orientation "h"
+        :space-evenly false
+        :spacing 5
+        (for ws in {jq(all_workspaces, ".\"${mon_name}\" // []")}
+            (button :class {ws.is_active ? "workspace-btn active" : "workspace-btn"}
+                    :onclick "hyprctl dispatch 'hl.dsp.focus({ workspace = \"${ws.id}\", on_current_monitor = true })'"
+                    "${ws.name}"))))
+
+(defwidget active_window []
+    (box :class "window-box"
+        :visible {active_window_title != ""}
+        (label :class "window-title"
+            :text "󰖯  ${active_window_title}")))
+
+(defwidget clock []
+    (eventbox :onhover "eww update date_hover=true"
+            :onhoverlost "eww update date_hover=false"
+        (box :class "clock"
+            :orientation "h"
+            :space-evenly false
+            :spacing 8
+            (label :class "clock-date"
+                :text "󰃭 ${date_hover ? date_full : date_short}")
+            (label :class "clock-time"
+                :text " ${time}")))
+    )
+
+(defwidget kb_layout []
+    (box :class "kb-box"
+        :orientation "h"
+        :space-evenly false
+        (label :class "kb-label"
+            :text "${kb_layout}")))
+
+(defwidget network []
+    (button :class "network-btn"
+            :onclick "uwsm app -- rio -e impala > /dev/null"
+        (label :class "network-label"
+            :text network_status)))
+
+(defwidget volume []
+    (eventbox :onscroll "if [ '{}' = 'up' ]; then wpctl set-volume -l 1.0 @DEFAULT_AUDIO_SINK@ 5%+; else wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-; fi"
+            :onclick "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"
+            :onrightclick "uwsm app -- pavucontrol &"
+        (box :class "volume"
+            :space-evenly false
+        (label :class "volume-label"
+                :text volume_status))))
+
+(defwidget sys_info []
+    (box :class "sys-box"
+        :orientation "h"
+        :space-evenly false
+        :spacing 10
+        (label :class "sys-item" :text " ${sys_stats.cpu}%")
+        (label :class "sys-item" :text "󰢮 ${sys_stats.gpu}%")
+        (label :class "sys-item" :text " ${sys_stats.ram}%")))
+
+(defwidget divider []
+  (box :class "divider"
+      :orientation "v"
+      :space-evenly true))
+
+(defwindow bar [mon_index mon_name]
+    :monitor mon_index
+    :geometry (geometry :x "0%"
+                        :y "0%"
+                        :width "100%"
+                        :height "40px"
+                        :anchor "top center")
+    :stacking "fg"
+    :focusable false
+    :reserve (struts :distance "48px" :side "top")
+    :exclusive true
+    (box :class "bar"
+        :orientation "h"
+        :space-evenly true
+        (box :class "group"
+            :halign "start"
+            :hexpand true
+            :space-evenly false
+            :spacing 8
+            (workspaces :mon_name mon_name)
+            (divider)
+            (active_window))
+        (box :class "group"
+            :halign "center"
+            :hexpand true
+            :space-evenly false
+            :spacing 8
+            (clock))
+        (box :class "group"
+            :halign "end"
+            :hexpand true
+            :space-evenly false
+            :spacing 8
+            (sys_info)
+            (divider)
+            (volume)
+            (divider)
+            (network)
+            (divider)
+            (kb_layout :class "kb-layout")
+            (divider)
+            (systray :class "tray"
+                :spacing 8
+                :icon-size 16
+                :prepend-new true))))

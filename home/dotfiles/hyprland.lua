@@ -32,6 +32,7 @@ hl.on("hyprland.start", function()
     hl.exec_cmd("sleep 10 && hyprpaper")
     hl.exec_cmd("wl-paste --type image --watch cliphist store")
     hl.exec_cmd("wl-clip-persist --clipboard regular")
+    hl.exec_cmd("eww daemon & sleep 1 && eww open bar --id 'bar_DP-1' --arg 'mon_index=0' --arg 'mon_name=DP-1'")
 end)
 
 -------------------------------------------------------------------------------

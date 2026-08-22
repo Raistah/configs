@@ -1,0 +1,120 @@
+$color-transparent: rgba(0, 0, 0, 0);
+$color-red-d: #cc241d;
+$color-red-d: #d65d0e;
+$color-green-d: #98971a;
+$color-yellow-d: #d79921;
+$color-blue-d: #458588;
+$color-purple-d: #b16286;
+$color-aqua-d: #689b6a;
+$color-gray-d: #928374;
+
+$color-red-l: #fb4934;
+$color-red-l: #fe8019;
+$color-green-l: #b8bb26;
+$color-yellow-l: #fabd2f;
+$color-blue-l: #83a598;
+$color-purple-l: #d3869b;
+$color-aqua-l: #8ec07c;
+$color-gray-l: #a89984;
+
+$color-bg0_h: #1d2021;
+$color-bg: #282828;
+$color-bg1: #3c3836;
+$color-bg2: #504945;
+$color-bg3: #665c54;
+
+$color-fg0: #fbf1c7;
+$color-fg: #ebdbb2;
+$color-fg1: #d5c4a1;
+$color-fg2: #bdae93;
+$color-fg3: #a89984;
+
+* {
+  font-family: "CaskaydiaCove NF";
+}
+
+.bar {
+  padding: 10px 20px;
+  background-color: rgba(0, 0, 0, 0);
+}
+
+.group {
+    background-color: $color-bg;
+    padding: 5px 15px;
+    border-radius: 5px;
+}
+
+.workspaces {
+    .workspace-btn {
+        all: unset;
+        padding: 5px 10px;
+        margin: 0 2px;
+        border-radius: 4px;
+        background-color: $color-gray-l;
+        border: 1px solid $color-gray-l;
+        font-weight: 500;
+        color: $color-bg;
+        transition: .3s;
+
+        &.active {
+          background-color: $color-fg;
+          border-color: $color-bg;
+          font-weight: bold;
+          color: $color-bg;
+        }
+
+        &:hover {
+            background-color: $color-bg1;
+            border-color: $color-fg1;
+            color: $color-fg1;
+        }
+    }
+}
+
+.window-box {
+    color: $color-fg;
+}
+
+.divider {
+    background-color: $color-fg;
+    min-width: 2px;
+    min-height: 2px;
+    margin: 4px 8px;
+}
+
+.clock {
+    color: $color-fg;
+}
+
+.kb-box {
+    padding: 0 5px;
+}
+.kb-label {
+    color: $color-fg;
+}
+
+.network-btn {
+    all: unset;
+    padding: 5px 10px;
+    margin: 0 2px;
+    border-radius: 4px;
+    background-color: $color-fg;
+    border: 1px solid $color-bg;
+    font-weight: 500;
+    color: $color-bg;
+    transition: .3s;
+
+    &:hover {
+        background-color: $color-bg1;
+        border-color: $color-fg1;
+        color: $color-fg1;
+    }
+}
+
+.volume {
+    color: $color-fg;
+}
+
+.sys-box {
+    color: $color-fg;
+}

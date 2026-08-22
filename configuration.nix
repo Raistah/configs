@@ -225,6 +225,7 @@ let
     picocom
     pkg-config
     protonplus
+    pulseaudio
     qbittorrent
     qemu
     resvg
