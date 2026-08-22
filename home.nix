@@ -13,7 +13,6 @@
     ./home/vesktop.nix
     ./home/vim.nix
     ./home/walker.nix
-    ./home/waybar.nix
     ./home/zed.nix
   ];
 
