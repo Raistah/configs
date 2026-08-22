@@ -4,7 +4,7 @@
 -- VARIABLES
 -------------------------------------------------------------------------------
 local mainMod = "SUPER"
-local terminal = "rio"
+local terminal = "alacritty"
 local fileManager = "dolphin"
 local menu = "uwsm app -- walker"
 

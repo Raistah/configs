@@ -70,7 +70,7 @@
 
 (defwidget network []
     (button :class "network-btn"
-            :onclick "uwsm app -- rio -e impala > /dev/null"
+            :onclick "uwsm app -- alacritty -e impala > /dev/null"
         (label :class "network-label"
             :text network_status)))
 
@@ -106,7 +106,6 @@
                         :anchor "top center")
     :stacking "fg"
     :focusable false
-    :reserve (struts :distance "48px" :side "top")
     :exclusive true
     (box :class "bar"
         :orientation "h"

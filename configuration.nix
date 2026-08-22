@@ -24,7 +24,11 @@ let
   boot.initrd.kernelModules = [
     "amdgpu"
   ];
-  boot.kernelParams = [ "amdgpu.runpm=0" "mem_sleep_default=deep" ];
+  boot.kernelParams = [
+    "amdgpu.runpm=0"
+    "mem_sleep_default=deep"
+    "usbcore.autosuspend=-1"
+  ];
   boot.kernel.sysctl."net.ipv4.conf.all.forwarding" = true;
   boot.kernel.sysctl."net.ipv4.forwarding" = true;
   boot.kernel.sysctl."net.ipv4.ip_forward" = 1;
@@ -71,7 +75,7 @@ let
       enable = true;
       settings = {
         default_session = {
-          command = "${pkgs.tuigreet}/bin/tuigreet --remember --remember-user-session --time --sessions /etc/nixos/desktop";
+          command = "${pkgs.tuigreet}/bin/tuigreet --time --remember --remember-user-session --sessions /etc/nixos/desktop";
           user = "raistah";
         };
       };
@@ -93,18 +97,15 @@ let
       enable = true;
 
       # 1 - usb switch, 2 - keyboard, 3 - mouse
-      extraRules = ''
-        SUBSYSTEM=="usb", DRIVERS=="usb", ATTRS{idVendor}=="05e3", ATTRS{idProduct}=="0625", ATTR{../power/wakeup}="enabled"
-        SUBSYSTEM=="usb", DRIVERS=="usb", ATTRS{idVendor}=="3151", ATTRS{idProduct}=="502e", ATTR{../power/wakeup}="enabled"
-        SUBSYSTEM=="usb", DRIVERS=="usb", ATTRS{idVendor}=="1d57", ATTRS{idProduct}=="fa60", ATTR{../power/wakeup}="enabled"
-      '';
+      # extraRules = ''
+      #   SUBSYSTEM=="usb", DRIVERS=="usb", ATTRS{idVendor}=="05e3", ATTRS{idProduct}=="0625", ATTR{../power/wakeup}="enabled"
+      #   SUBSYSTEM=="usb", DRIVERS=="usb", ATTRS{idVendor}=="3151", ATTRS{idProduct}=="502e", ATTR{../power/wakeup}="enabled"
+      #   SUBSYSTEM=="usb", DRIVERS=="usb", ATTRS{idVendor}=="1d57", ATTRS{idProduct}=="fa60", ATTR{../power/wakeup}="enabled"
+      # '';
 
       packages = [
 	     	(pkgs.writeTextFile {
 					name = "probe-rs_udev";
-					# text = ''
-					# 	hehe
-					# '';
 					text = builtins.readFile ./udev/69-probe-rs.rules;
 					destination = "/etc/udev/rules.d/69-probe-rs.rules";
 	      })
@@ -144,15 +145,41 @@ let
     enable = true;
   };
 
-  systemd.services.greetd.serviceConfig = {
-   	Type = "idle";
-    StandardInput = "tty";
-    StandardOutput = "tty";
-    StandardError = "tty";
+  systemd.services.reset-usb-hub = {
+    description = "Reset USB Host Controller to fix powered hub boot enumeration";
+    wantedBy = [ "multi-user.target" ];
+    before = [ "display-manager.service" "greetd.service" ];
+    script = ''
+      # Find the PCI address of your USB 3.0 / xHCI controller
+      for dev in /sys/bus/pci/drivers/xhci_hcd/*:*; do
+        if [ -e "$dev" ]; then
+          busid=$(basename "$dev")
+          echo "Resetting USB controller $busid..."
+          echo "$busid" > /sys/bus/pci/drivers/xhci_hcd/unbind
+          sleep 1
+          echo "$busid" > /sys/bus/pci/drivers/xhci_hcd/bind
+        fi
+      done
+    '';
+    serviceConfig = {
+      Type = "oneshot";
+      RemainAfterExit = true;
+    };
+  };
 
-    TTYReset = true;
-    TTYHangup = true;
-    TTYDisallocate = true;
+  systemd.services.greetd = {
+    wants = [ "reset-usb-hub.service" ];
+    after = [ "reset-usb-hub.service" ];
+    serviceConfig = {
+     	Type = "idle";
+      StandardInput = "tty";
+      StandardOutput = "tty";
+      StandardError = "tty";
+
+      TTYReset = true;
+      TTYHangup = true;
+      TTYDisallocate = true;
+    };
   };
 
   users.groups = {
@@ -176,9 +203,7 @@ let
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
-		signal-desktop
-		vtsls
-		zoxide
+    alacritty
     amdgpu_top
     beekeeper-studio
     bluetui
@@ -232,6 +257,8 @@ let
     rio
     ripgrep
     rust-script
+    signal-desktop
+    slurp
     sops
     sqlite
     ssh-to-age
@@ -239,9 +266,12 @@ let
     unzip
     usbutils
     vlc
+    vtsls
+    wf-recorder       # The Wayland screen recorder
     wget
     wl-clipboard
     yazi
+    zoxide
     # redisinsight
   ];
 
@@ -260,6 +290,16 @@ let
 
   environment.sessionVariables = {
     NIXOS_OZONE_WL = "1";
+
+    # Forces Zed, Rio Terminal, and general toolkits to use the Wayland backend
+    GDK_BACKEND = "wayland";
+    QT_QPA_PLATFORM = "wayland";
+    CLUTTER_BACKEND = "wayland";
+
+    # Prevents hardware acceleration layers from falling back to software rendering
+    LIBVA_DRIVER_NAME = "radeonsi";
+    VDPAU_DRIVER = "radeonsi";
+
     EDITOR = "vim";
   };
 

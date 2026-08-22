@@ -34,6 +34,10 @@
       source = ./home/dotfiles/rio.toml;
       recursive = true;
     };
+    ".config/alacritty/alacritty.toml" = {
+      source = ./home/dotfiles/alacritty.toml;
+      recursive = true;
+    };
     ".icons/Nordzy-hyprcursors" = {
       source = ./home/icons/Nordzy-hyprcursors;
       recursive = true;

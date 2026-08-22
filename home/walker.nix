@@ -8,7 +8,8 @@
 
     config = {
       theme = "nixos";
-      terminal = "rio";
+      terminal = "alacritty";
+      term_exec = "alacritty -e";
       list = {
         height = 200;
       };
