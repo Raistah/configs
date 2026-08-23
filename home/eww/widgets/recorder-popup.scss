@@ -1,0 +1,66 @@
+@use "../variables.scss" as variables;
+
+.recorder_menu {
+    background-color: rgba(0, 0, 0, 0);
+}
+
+.rec-bar-btn {
+    all: unset;
+    padding: 0 8px;
+    color: variables.$color-red-l;
+    font-weight: bold;
+    transition: 0.2s;
+
+    &.active {
+        color: variables.$color-bg0_h;
+        background-color: variables.$color-red-l;
+        border-radius: 4px;
+    }
+
+    &:hover {
+        color: variables.$color-fg0;
+    }
+}
+
+.recorder-menu {
+    background-color: variables.$color-bg;
+    border: 2px solid variables.$color-bg2;
+    border-radius: 8px;
+    padding: 15px;
+    min-width: 280px;
+
+    .recorder-title {
+        color: variables.$color-fg;
+        font-weight: bold;
+        font-size: 14px;
+        margin-bottom: 5px;
+    }
+
+    .rec-btn {
+        all: unset;
+        background-color: variables.$color-bg1;
+        color: variables.$color-fg;
+        padding: 8px 12px;
+        border-radius: 5px;
+        border: 1px solid variables.$color-bg2;
+        transition: 0.2s;
+
+        &:hover {
+            background-color: variables.$color-blue-d;
+            color: variables.$color-fg0;
+        }
+
+        &.audio-on {
+            background-color: variables.$color-green-d;
+            color: variables.$color-fg0;
+        }
+
+        &.close-btn:hover {
+            background-color: variables.$color-red-d;
+        }
+    }
+
+    .recorder-controls {
+
+    }
+}

@@ -1,3 +1,6 @@
+(include "./widgets/recorder-popup.yuck")
+
+
 (deflisten all_workspaces :initial "{}"
   "~/scripts/watch-all-workspaces.sh")
 
@@ -129,6 +132,8 @@
             :hexpand true
             :space-evenly false
             :spacing 8
+            (recorder_button)
+            (divider)
             (sys_info)
             (divider)
             (volume)

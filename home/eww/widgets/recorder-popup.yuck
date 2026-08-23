@@ -1,0 +1,46 @@
+;; Recording variables
+(defvar rec_audio false)
+(defvar rec_status false)
+
+;; Recorder popup widget
+(defwidget recorder_popup []
+    (box :class "recorder-menu"
+        :orientation "v"
+        :space-evenly false
+        :spacing 10
+        (label :class "recorder-title"
+            :text "Screen Recorder")
+
+    ;; Mode Select Buttons
+    (box :class "recorder-modes"
+        :orientation "h"
+        :spacing 5
+        :space-evenly true
+        (button :class "rec-btn"
+            :onclick "~/scripts/screen-recorder.sh screen &" "󰍹 Screen")
+        (button :class "rec-btn"
+            :onclick "~/scripts/screen-recorder.sh window &" "󰖯 Window")
+        (button :class "rec-btn"
+            :onclick "~/scripts/screen-recorder.sh region &" "󰒆 Region"))
+
+    ;; Controls Row
+    (box :class "recorder-controls" :orientation "h" :spacing 5 :space-evenly true
+        (button :class {rec_audio ? "rec-btn audio-on" : "rec-btn audio-off"}
+                :onclick "eww update rec_audio=${!rec_audio} && if [ '${!rec_audio}' = 'true' ]; then echo 'true' > /tmp/eww_rec_audio; else echo 'false' > /tmp/eww_rec_audio; fi"
+                {rec_audio ? "󰍬 Audio ON" : "󰍭 Audio OFF"})
+        (button :class "rec-btn close-btn"
+            :onclick "eww close recorder_menu" "󰅖 Close"))))
+
+;; Top bar trigger button (add inside your bar layout under .group)
+(defwidget recorder_button []
+    (button :class {rec_status ? "rec-bar-btn active" : "rec-bar-btn"}
+        :onclick {rec_status ? "~/scripts/screen-recorder.sh stop" : "eww open --toggle recorder_menu"}
+        {rec_status ? "󰑋 Stop Rec" : "󰑋"}))
+
+;; Popup window modal
+(defwindow recorder_menu
+    :monitor 0
+    :geometry (geometry :x "0%" :y "50px" :anchor "top center")
+    :stacking "fg"
+    :focusable false
+    (recorder_popup))

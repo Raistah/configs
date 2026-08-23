@@ -29,6 +29,11 @@ let
     "mem_sleep_default=deep"
     "usbcore.autosuspend=-1"
   ];
+  boot.extraModprobeConfig = ''
+    options
+    usbcore
+    use_both_schemes=y
+  '';
   boot.kernel.sysctl."net.ipv4.conf.all.forwarding" = true;
   boot.kernel.sysctl."net.ipv4.forwarding" = true;
   boot.kernel.sysctl."net.ipv4.ip_forward" = 1;
@@ -145,27 +150,24 @@ let
     enable = true;
   };
 
-  systemd.services.reset-usb-hub = {
-    description = "Reset USB Host Controller to fix powered hub boot enumeration";
-    wantedBy = [ "multi-user.target" ];
-    before = [ "display-manager.service" "greetd.service" ];
-    script = ''
-      # Find the PCI address of your USB 3.0 / xHCI controller
-      for dev in /sys/bus/pci/drivers/xhci_hcd/*:*; do
-        if [ -e "$dev" ]; then
-          busid=$(basename "$dev")
-          echo "Resetting USB controller $busid..."
-          echo "$busid" > /sys/bus/pci/drivers/xhci_hcd/unbind
-          sleep 1
-          echo "$busid" > /sys/bus/pci/drivers/xhci_hcd/bind
-        fi
-      done
-    '';
-    serviceConfig = {
-      Type = "oneshot";
-      RemainAfterExit = true;
-    };
-  };
+  # systemd.services.reset-usb-hub = {
+  #   description = "Fast authorization toggle for main USB hub on port 5-1";
+  #   wantedBy = [ "multi-user.target" ];
+  #   before = [ "display-manager.service" "greetd.service" ];
+  #   script = ''
+  #     HUB_PORT="5-1"
+
+  #     if [ -d "/sys/bus/usb/devices/$HUB_PORT" ]; then
+  #       echo 0 > "/sys/bus/usb/devices/$HUB_PORT/authorized"
+  #       sleep 0.1
+  #       echo 1 > "/sys/bus/usb/devices/$HUB_PORT/authorized"
+  #     fi
+  #   '';
+  #   serviceConfig = {
+  #     Type = "oneshot";
+  #     RemainAfterExit = true;
+  #   };
+  # };
 
   systemd.services.greetd = {
     wants = [ "reset-usb-hub.service" ];
@@ -262,6 +264,7 @@ let
     sops
     sqlite
     ssh-to-age
+    tmux
     ungoogled-chromium
     unzip
     usbutils

@@ -1,5 +1,16 @@
-{ config, pkgs, ... }:
+{ config, pkgs, lib, ... }:
 
+let
+  scriptsSrcDir = ./home/scripts;
+  scriptsFiles = builtins.attrNames (builtins.readDir scriptsSrcDir);
+  scripts = builtins.listToAttrs (map (filename: {
+    name = "scripts/${filename}";
+    value = {
+      source = "${scriptsSrcDir}/${filename}";
+      executable = true;
+    };
+  }) scriptsFiles);
+in
 {
   imports = [
     ./home/cliphist.nix
@@ -15,7 +26,6 @@
     ./home/walker.nix
     ./home/zed.nix
   ];
-
 
   home.username = "raistah";
   home.homeDirectory = "/home/raistah";
@@ -43,52 +53,16 @@
       recursive = true;
     };
 
-    "scripts/screenshots_menu.sh" = {
-      source = ./home/scripts/screenshots_menu.sh;
-      recursive = true;
-      executable = true;
-    };
-
     # eww
+    ".config/eww" = {
+      source = ./home/eww;
+      recursive = true;
+    };
     ".config/eww/eww.yuck" = {
       source = ./home/eww/eww.yuck;
       recursive = true;
     };
-    ".config/eww/eww.scss" = {
-      source = ./home/eww/eww.scss;
-      recursive = true;
-    };
-    "scripts/read-volume.sh" = {
-      source = ./home/eww/read-volume.sh;
-      recursive = true;
-      executable = true;
-    };
-    "scripts/system-monitor.sh" = {
-      source = ./home/eww/system-monitor.sh;
-      recursive = true;
-      executable = true;
-    };
-    "scripts/watch-active-window.sh" = {
-      source = ./home/eww/watch-active-window.sh;
-      recursive = true;
-      executable = true;
-    };
-    "scripts/watch-all-workspaces.sh" = {
-      source = ./home/eww/watch-all-workspaces.sh;
-      recursive = true;
-      executable = true;
-    };
-    "scripts/watch-connected-network.sh" = {
-      source = ./home/eww/watch-connected-network.sh;
-      recursive = true;
-      executable = true;
-    };
-    "scripts/watch-kb-layout.sh" = {
-      source = ./home/eww/watch-kb-layout.sh;
-      recursive = true;
-      executable = true;
-    };
-  };
+  } // scripts;
 
   home.stateVersion = "25.05";
 }
